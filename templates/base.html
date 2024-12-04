@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{%- if page.title %}
+{%- set base_title = page.title ~ " - " ~ config.extra.title %}
+{%- elif section.title %}
+{%- set base_title = section.title ~ " - " ~ config.extra.title %}
+{%- else %}
+{%- set base_title = config.extra.title ~ " - " ~ config.extra.title_default_tag %}
+{%- endif %}
+{%- if page.description %}
+{%- set base_description = page.description ~ " - " ~ config.extra.description %}
+{%- elif section.description %}
+{%- set base_description = section.description ~ " - " ~ config.extra.description %}
+{%- else %}
+{%- set base_description = config.extra.description %}
+{%- endif %}
+
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- Metadata -->
+  <title>{{base_title}}</title>
+  <meta name="description" content="{{base_description}}">
+  <meta name="robots" content="max-image-preview:large">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <!-- Microdata -->
+  <meta itemprop="name" content="{{base_title}}">
+  <meta itemprop="description" content="{{base_description}}">
+  <meta itemprop="image" content="{{get_url(path=config.extra.logo)}}">
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="{{base_title}}">
+  <meta property="og:description" content="{{base_description}}">
+  <meta property="og:image" content="{{get_url(path=config.extra.logo)}}">
+  <meta property="og:url" content="{{get_url(path=current_path)}}">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter -->
+  <meta name="twitter:title" content="{{base_title}}">
+  <meta name="twitter:description" content="{{base_description}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{get_url(path=config.extra.logo)}}">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="canonical" href="{{get_url(path=current_path)}}" />
+
+  <!-- LD-JSON -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "{{config.extra.title}}",
+      "url": "{{config.base_url}}",
+      "logo": "{{config.extra.logo}}"
+    }
+  </script>
+
+  {%- if config.generate_feed %}
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS"
+    href="{{ get_url(path=config.feed_filename, trailing_slash=false) }}">
+  {%- endif %}
+
+  <!-- Display/Scripting -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <link rel="stylesheet" type="text/css" href="/phosphor.css" />
+</head>
+
+<body>
+  <header class="w-screen flex items-center h-16 px-4 space-x-5 font-semibold">
+    <div class="flex items-center space-x-2">
+      <a class="" href="/"><img src="manta-logo.svg" alt="MANTA Lab logo" /></a>
+      <a class="" href="/">MANTA Lab</a>
+    </div>
+    <a class="flex items-center space-x-1" href="#">
+      <span>Explore</span>
+      <svg width="9" height="9" viewBox="0 -1 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 9L0 0L12 0L6 9Z" stroke="white"/>
+      </svg>
+    </a>
+    <a class="" href="/pricing">Pricing</a>
+    <a class="" href="/blog">Blog</a>
+    <a class="" href="/contact-us">Contact</a>
+    <span class="hidden md:inline md:flex-auto"></span>
+    <a class="" href="/contact-us">Schedule a Demo</a>
+    <a class="" href="/app">Sign Up</a>
+    <a class="" href="/app">Log In</a>
+  </header>
+
+  {% block padding %}
+  <div class="mt-14"></div>
+  {% endblock padding %}
+  <main>
+    {% block content %}{% endblock content %}
+  </main>
+
+  <footer class="w-full flex flex-col p-12 space-y-4">
+    <section class="m-auto max-w-screen-lg w-full">
+      <div class="flex flex-wrap md:flex-nowrap justify-between gap-8">
+        <div>
+          <span class="text-lg font-semibold">Home</span>
+          <ul class="space-y-1">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="text-lg font-semibold">Explore</span>
+          <ul class="space-y-1">
+            <li><a href="#">for Artists</a></li>
+            <li><a href="#">for Game Developers</a></li>
+            <li><a href="#">for Art Directors</a></li>
+            <li><a href="#">for Producers</a></li>
+            <li><a href="#">for Sound Designers</a></li>
+            <li><a href="#">for Teams</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="text-lg font-semibold">Resources</span>
+          <ul class="space-y-1">
+            <li><a href="#">Knowledge Base</a></li>
+            <li><a href="#">Roadmap</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="text-lg font-semibold">Legal</span>
+          <ul class="space-y-1">
+            <li><a href="#">Terms and Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="text-lg font-semibold">Contact Us</span>
+          <ul class="space-y-1">
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Sales</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex flex-col place-items-center space-y-2">
+        <select class="h-9">
+          <option>English</option>
+          <option>日本語</option>
+        </select>
+        <small>&copy; Copyright 2024</small>
+      </div>
+    </section>
+  </footer>
+</body>
+</html>

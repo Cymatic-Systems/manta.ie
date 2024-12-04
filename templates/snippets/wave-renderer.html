@@ -1,0 +1,201 @@
+<script src="twgl-5.6.0.min.js"></script>
+<script type="text/javascript">
+  "use strict";
+
+  // Mesh settings
+  const width = 120;
+  const height = 60;
+  const spacing = 2;
+  const pixelRatio = 1.25;
+  const timeScale = 0.0001;
+  
+  // Camera settings
+  const cameraPitch = 120;
+  const cameraYaw = 180;
+  const offsetX = -width/2;
+  const offsetY = -10;
+  const distance = -50;
+
+  function makeViewMatrix() {
+    const pitch = cameraPitch * Math.PI / 180; // Convert to radians
+    const yaw = cameraYaw * Math.PI / 180; // Convert to radians
+
+    // Calculate the camera's position relative to the target point
+    const eye = [
+      offsetX + Math.sin(yaw) * Math.cos(pitch),
+      offsetY + Math.sin(pitch),
+      distance + Math.cos(yaw) * Math.cos(pitch)
+    ];
+
+    const target = [offsetX, offsetY, distance]; // Use the target point specified in configuration
+    const up = [0, 1, 0]; // Up vector
+
+    return twgl.m4.lookAt(eye, target, up);
+  }
+
+  function makeProjectionMatrix(gl) {
+    const fov = 30;
+
+    return twgl.m4.perspective(
+      fov * Math.PI / 180,
+      gl.canvas.clientWidth / gl.canvas.clientHeight,
+      0.0001,
+      1000
+    );
+  }
+
+  function makeMeshBuffer(gl, width, height, numWidthSegments, numHeightSegments, spacing) {
+    const positions = [];
+    const normals = [];
+    const texCoords = [];
+    const indices = [];
+
+    for (let y = 0; y <= numHeightSegments; ++y) {
+      for (let x = 0; x <= numWidthSegments; ++x) {
+        const u = x / numWidthSegments;
+        const v = y / numHeightSegments;
+        const xPos = u * width;
+        const yPos = v * height;
+
+        positions.push(xPos, yPos, 0);
+        normals.push(0, 0, 1);
+        texCoords.push(u, v);
+
+        if (x < numWidthSegments && y < numHeightSegments) {
+          const index = x + y * (numWidthSegments + 1);
+          indices.push(index, index + 1);
+          indices.push(index + numWidthSegments + 1, index + 1);
+          indices.push(index + numWidthSegments + 2, index + numWidthSegments + 1);
+          indices.push(index, index + numWidthSegments + 1);
+          indices.push(index + numWidthSegments + 2, index + 1);
+        }
+      }
+    }
+
+    const arrays = {
+      position: positions,
+      normal: normals,
+      texcoord: texCoords,
+      indices: indices,
+    };
+
+    return twgl.createBufferInfoFromArrays(gl, arrays);
+  }
+
+  const vs = `
+      attribute vec4 position;
+      uniform mat4 uProjection;
+      uniform mat4 uView;
+      uniform float uTime;
+      varying vec3 fPosition;
+
+      #define PI 3.1415926538
+      #define SamplingOffset 1000.0
+      #define MinIntensity 0.35
+      #define MaxIntensity 0.65
+      #define PositionScale 4.0
+
+      float getSample(float t, float x, float y) {
+          float m = t - 42.0;
+          float n = t + 1.0;	
+          float L = t * 0.992 - (1.0/-42.0);
+          float a = 2.0;
+          float b = 2.0;
+          
+          return a * cos((n*PI*x)/L) * cos((m*PI*y)/L) - b * cos((m*PI*x)/L) * cos((n*PI*y)/L);
+      }
+      
+      void main() {
+        float sample = getSample(SamplingOffset, position.x * PositionScale + uTime, position.y * PositionScale + uTime);
+        float waveAmount = (sin(uTime) + 1.0) / 2.0;
+        float intensity = MinIntensity + waveAmount * (MaxIntensity - MinIntensity);
+        vec4 newPos = vec4(position.x, position.y, sample * intensity, position.w);
+
+        gl_Position = uProjection * uView * newPos;
+        fPosition = newPos.xyz;
+      }
+    `;
+
+  const fs = `
+      precision highp float;
+      uniform float uWidth;
+      uniform float uHeight;
+      varying vec3 fPosition;
+      
+      void main() {
+        float xFog = abs(fPosition.x - uWidth*0.5) / (uWidth*0.5);
+        float yFog = abs(fPosition.y - uHeight*0.5) / (uHeight*0.5);
+        float fog = 1.0 - max(xFog, yFog);
+
+        gl_FragColor = vec4(fog);
+      }
+    `;
+
+  const displayMultiplier = 1.5;
+  const gl = document.querySelector("canvas").getContext("webgl");
+
+  // Shaders
+  const programInfo = twgl.createProgramInfo(gl, [vs, fs]);
+  gl.useProgram(programInfo.program);
+
+  // Enable depth testing to prevent overlapping from the back
+  gl.enable(gl.DEPTH_TEST);
+  
+  // Mesh
+  const bufferInfo = makeMeshBuffer(gl, width, height, width / spacing, height / spacing);
+  twgl.setBuffersAndAttributes(gl, programInfo, bufferInfo);
+
+  // Subscribe to reduced motion after the first frame
+  const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let enableAnimations = !mediaQuery.matches;
+  mediaQuery.addEventListener("change", () => {
+    enableAnimations = !mediaQuery.matches;
+  });
+
+  const viewMatrix = makeViewMatrix();
+  var projectionMatrix = makeProjectionMatrix(gl);
+  
+  window.addEventListener('resize', function () {
+    // Resize GL context when window size changes
+    twgl.resizeCanvasToDisplaySize(gl.canvas, window.devicePixelRatio * pixelRatio);
+    projectionMatrix = makeProjectionMatrix(gl);
+  });
+
+  // Render a frame
+  function render(time) {
+    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
+    const uniforms = {
+      uTime: time * timeScale,
+      resolution: [gl.canvas.width, gl.canvas.height],
+      uProjection: projectionMatrix,
+      uView: viewMatrix,
+      uWidth: width,
+      uHeight: height,
+    };
+
+    twgl.setUniforms(programInfo, uniforms);
+    twgl.drawBufferInfo(gl, bufferInfo, gl.LINES);
+  }
+
+  // Render the animation
+  function renderAnimation(time) {
+    if (enableAnimations) {
+      render(time);
+    }
+
+    requestAnimationFrame(renderAnimation);
+  }
+
+  // Render a single frame first (for browsers with reduced motion)
+  function renderFirstFrame(time) {
+    // Render two frames because of double buffering
+    render(time);
+    render(time);
+    requestAnimationFrame(renderAnimation);
+  }
+
+  // Init animations
+  twgl.resizeCanvasToDisplaySize(gl.canvas, window.devicePixelRatio * pixelRatio);
+  requestAnimationFrame(renderFirstFrame);
+</script>
