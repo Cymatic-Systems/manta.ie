@@ -79,24 +79,28 @@
 </head>
 
 <body>
-  <header class="w-screen flex items-center h-16 px-4 space-x-5 font-semibold">
+  <header class="w-screen flex items-center h-14 px-4 space-x-5 font-semibold">
     <div class="flex items-center space-x-2">
       <a class="" href="/"><img src="manta-logo.svg" alt="MANTA Lab logo" /></a>
       <a class="" href="/">MANTA Lab</a>
     </div>
+    <!--
     <a class="flex items-center space-x-1" href="#">
-      <span>Explore</span>
+      <span class="text-gray-800 cursor-default">Explore</span>
       <svg width="9" height="9" viewBox="0 -1 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M6 9L0 0L12 0L6 9Z" stroke="white"/>
+        <path d="M6 9L0 0L12 0L6 9Z" stroke="black"/>
       </svg>
     </a>
-    <a class="" href="/pricing">Pricing</a>
-    <a class="" href="/blog">Blog</a>
-    <a class="" href="/contact-us">Contact</a>
+    <a class="text-gray-800 cursor-default" href="/#">Pricing</a>
+    <a class="text-gray-800 cursor-default" href="/#">Blog</a>
+    <a class="text-gray-800 cursor-default" href="/#">Contact</a>
+    -->
     <span class="hidden md:inline md:flex-auto"></span>
-    <a class="" href="/contact-us">Schedule a Demo</a>
-    <a class="" href="/app">Sign Up</a>
-    <a class="" href="/app">Log In</a>
+    <a class="" href="https://calendly.com/manta-demo/30min">Schedule a Demo</a>
+    <!--
+    <a class="text-gray-800 cursor-default" href="/#">Sign Up</a>
+    <a class="text-gray-800 cursor-default" href="/#">Log In</a>
+    -->
   </header>
 
   {% block padding %}
@@ -157,7 +161,8 @@
           <option>English</option>
           <option>日本語</option>
         </select>
-        <small>&copy; Copyright 2024</small>
+        <small>&copy; Copyright Cymatic Systems Ltd. 2025</small>
+        <small><a href="https://cymatic.ie">cymatic.ie</small>
       </div>
     </section>
   </footer>

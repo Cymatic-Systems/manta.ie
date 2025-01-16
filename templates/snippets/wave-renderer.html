@@ -6,7 +6,7 @@
   const width = 120;
   const height = 60;
   const spacing = 2;
-  const pixelRatio = 1.25;
+  const pixelRatio = 1;
   const timeScale = 0.0001;
   
   // Camera settings
@@ -127,11 +127,10 @@
         float yFog = abs(fPosition.y - uHeight*0.5) / (uHeight*0.5);
         float fog = 1.0 - max(xFog, yFog);
 
-        gl_FragColor = vec4(fog);
+        gl_FragColor = vec4(fog * 0.75);
       }
     `;
 
-  const displayMultiplier = 1.5;
   const gl = document.querySelector("canvas").getContext("webgl");
 
   // Shaders

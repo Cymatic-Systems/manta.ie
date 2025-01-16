@@ -3,7 +3,7 @@
 
 {% block padding %}{% endblock padding %}
 {% block content %}
-<div id="backdrop" class="h-[100vh] min-h-[30rem]">
+<div id="backdrop" class="h-[100vh] min-h-[30rem] max-h-[1440px]">
   <canvas class="w-full h-full">
   </canvas>
 </div>
@@ -18,16 +18,42 @@
         Creativity_
       </span>
     </div>
-    <div class="max-w-[33rem] w-full p-1 text-xl leading-7 font-normal bg-[#222222]/40 backdrop-blur-md">
+    <div class="max-w-[33rem] w-full p-1 text-xl font-normal bg-[#222222]/40 backdrop-blur-md">
       MANTA Lab is a Digital Asset Management platform specializing in facilitating <strong>easy and secure</strong> collaboration
       between artists, contractors and game developers alike.
     </div>
-    <div class="flex space-x-2">
-      <div class="w-44 h-11 p-2 bg-[#5acdd3] rounded-md justify-center items-center inline-flex">
-        <div class="text-[#181b39] text-xl font-semibold leading-7">Get Started</div>
-      </div>
-      <div class="w-56 h-11 p-2 bg-[#4caeff] rounded-md justify-center items-center inline-flex">
-        <div class="text-[#181b39] text-xl font-semibold leading-7">Schedule a demo</div>
+    <div class="flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0">
+      <form
+        action="https://cymatic.us9.list-manage.com/subscribe/post?u=ef9a12026e8ec92e8bd14600e&amp;id=e4225e3077&amp;f_id=004e50e1f0"
+        method="post"
+        target="_self"
+        class="flex w-full md:w-96"
+      >
+        <input
+          class="h-11 w-3/5 p-2 rounded-l-md bg-[#0F1C2E] border-[#364050] border p-1 focus:border-[#5acdd3] outline-none"
+          type="email"
+          name="EMAIL"
+          placeholder="Email Address"
+          value=""
+          required
+        />
+        <div
+          aria-hidden="true"
+          style="position: absolute; left: -50000px;"
+        >
+          <input
+            type="text"
+            name="b_ef9a12026e8ec92e8bd14600e_e4225e3077"
+            tabindex="-1"
+            value=""
+          />
+        </div>
+        <button type="submit" name="subscribe" class="h-11 w-2/5 p-2 bg-[#5acdd3] rounded-r-md text-[#181b39] justify-center items-center inline-flex">
+          <div class="text-[#181b39] text-xl font-semibold">Join Waitlist</div>
+        </button>
+      </form>
+      <div class="w-full md:w-56 h-11 p-2 bg-[#4caeff] rounded-md justify-center items-center inline-flex">
+        <a href="https://calendly.com/manta-demo/30min" class="text-[#181b39] text-xl font-semibold leading-7">Schedule a demo</a>
       </div>
     </div>
   </div>

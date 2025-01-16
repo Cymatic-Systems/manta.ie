@@ -23,7 +23,7 @@ header {
     background-color: rgba(20, 24, 31, 0.35);
 }
 
-header a {
+header a, header span {
     font-size: large;
     font-weight: 400;
 }
