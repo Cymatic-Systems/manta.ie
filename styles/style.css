@@ -7,6 +7,7 @@ html {
     font-family: "Noto Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
     font-weight: 400;
     scroll-padding-top: 6.5rem;
+    background: #000000
 }
 
 body {
@@ -45,4 +46,8 @@ select {
     padding: 6px;
     border-radius: 4px;
     text-align: center;
+}
+
+.cymatic-logo {
+    fill: rgba(240,240,240,1)
 }
