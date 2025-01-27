@@ -4,7 +4,7 @@
 
   // Mesh settings
   const width = 120;
-  const height = 60;
+  const height = 30;
   const spacing = 2;
   const pixelRatio = 1;
   const timeScale = 0.0001;
@@ -132,7 +132,7 @@
     `;
 
   const gl = document.querySelector("canvas").getContext("webgl");
-
+  gl.canvas.height = gl.canvas.height / 2
   // Shaders
   const programInfo = twgl.createProgramInfo(gl, [vs, fs]);
   gl.useProgram(programInfo.program);
