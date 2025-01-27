@@ -3,8 +3,8 @@
 
 {% block padding %}{% endblock padding %}
 {% block content %}
-<div id="backdrop" class="h-1/2 min-h-[30rem] max-h-[1440px]">
-  <canvas class="w-full h-1/2">
+<div id="backdrop" class="h-[100vh] min-h-[30rem] max-h-[1440px]">
+  <canvas class="w-full h-full">
   </canvas>
 </div>
 <span class="absolute top-32 left-0 right-0">
@@ -60,12 +60,12 @@
 </span>
 
  <!-- Image-->
- <div class="flex items-center justify-center max-w-screen-xl w-full m-auto p-4 text-white text-xl space-y-2">
+<div class="flex items-center justify-center max-w-screen-xl w-full mx-auto mt-[-20vh] sm:mt-[-40vh] p-4 text-white text-xl space-y-2">
   <img src="screenshot-1.png" alt="Demo screen shot of site" class="w-5/6 h-full object-cover">
 </div>
 
 <!-- Trusted By-->
-<div class="flex flex-col items-center justify-center max-w-screen-xl w-full m-auto p-4 text-white text-xl space-y-2 pb-4">
+<div class="flex flex-col items-center justify-center max-w-screen-xl w-full m-auto p-4 text-white text-xl space-y-2 pb-4 hidden">
   <p class="text-center">Trusted by Creative Studios Worldwide</p>
   <div class="flex flex-row w-80 h-40 text-white">
     <!-- Logo -->
@@ -104,56 +104,64 @@
   <!-- Feature Cards -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
     <!-- Card 1 -->
-    <div class="flex flex-col p-6 bg-[#0A1316] bg-opacity-40 rounded-lg shadow-md space-y-4">
+    <div class="flex flex-col space-y-4">
       <div class="flex items-center justify-center">
         <img src="undraw_secure-server.svg" alt="Secure server icon" class="w-1/2 h-[200px]">
       </div>
-      <h2 class="text-xl font-semibold text-[#B5FBFF]">Safe in the Cloud</h2>
-      <p class="text-sm">
-        Your creative assets are securely encrypted at rest, ensuring that your work is protected in the cloud.
-        From concept art to final animations, every file is shielded, allowing you to concentrate on what matters most - creating.
-        With MANTA Lab, your assets are safeguarded from unauthorized access, facilitating secure and seamless collaboration.
-      </p>
+      <div class="p-6 bg-[#0A1316] bg-opacity-40 rounded-lg shadow-md">
+        <h2 class="text-xl font-semibold text-[#B5FBFF]">Safe in the Cloud</h2>
+        <p class="text-sm">
+          Your creative assets are securely encrypted at rest, ensuring that your work is protected in the cloud.
+          From concept art to final animations, every file is shielded, allowing you to concentrate on what matters most - creating.
+          With MANTA Lab, your assets are safeguarded from unauthorized access, facilitating secure and seamless collaboration.
+        </p>
+      </div>
     </div>
 
     <!-- Card 2 -->
-    <div class="flex flex-col p-6 bg-[#0A1316] bg-opacity-40 rounded-lg shadow-md space-y-4">
+    <div class="flex flex-col space-y-4">
       <div class="flex items-center justify-center">
         <img src="undraw_file-sync.svg" alt="File sync icon" class="w-1/2 h-[200px]">
       </div>
-      <h2 class="text-xl font-semibold text-[#B5FBFF]">Update Assets with Ease</h2>
-      <p class="text-sm">
-        With MANTA Lab, updating assets is simple. Whether adjusting a model or perfecting an animation, you can upload new versions quickly and easily.
-        A simple click shares the latest updates, keeping your team aligned and informed.
-        Changes can sync seamlessly across devices, allowing everyone to access the most recent versions when needed. 
-        You have control over which files get updated, minimizing confusion and ensuring a smooth creative workflow.
-      </p>
+      <div class="p-6 bg-[#0A1316] bg-opacity-40 rounded-lg shadow-md">
+        <h2 class="text-xl font-semibold text-[#B5FBFF]">Update Assets with Ease</h2>
+        <p class="text-sm">
+          With MANTA Lab, updating assets is simple. Whether adjusting a model or perfecting an animation, you can upload new versions quickly and easily.
+          A simple click shares the latest updates, keeping your team aligned and informed.
+          Changes can sync seamlessly across devices, allowing everyone to access the most recent versions when needed.
+          You have control over which files get updated, minimizing confusion and ensuring a smooth creative workflow.
+        </p>
+      </div>
     </div>
 
     <!-- Card 3 -->
-    <div class="flex flex-col p-6 bg-[#0A1316] bg-opacity-40 rounded-lg shadow-md space-y-4">
+    <div class="flex flex-col space-y-4">
       <div class="flex items-center justify-center">
         <img src="undraw_folder.svg" alt="Folder icon" class="w-1/2 h-[200px]">
       </div>
-      <h2 class="text-xl font-semibold text-[#B5FBFF]">Built Around Your Process</h2>
-      <p class="text-sm">
-        Manage all your creative files in one intuitive platform. 
-        MANTA Lab's organized asset browser lets you quickly find, sort, and categorize everything from 3D models to sound effects.
-        Maintain clarity and efficiency in your projects with advanced filtering options, making asset management as smooth as your creative process.
-      </p>
+      <div class="p-6 bg-[#0A1316] bg-opacity-40 rounded-lg shadow-md">
+        <h2 class="text-xl font-semibold text-[#B5FBFF]">Built Around Your Process</h2>
+        <p class="text-sm">
+          Manage all your creative files in one intuitive platform.
+          MANTA Lab's organized asset browser lets you quickly find, sort, and categorize everything from 3D models to sound effects.
+          Maintain clarity and efficiency in your projects with advanced filtering options, making asset management as smooth as your creative process.
+        </p>
+      </div>
     </div>
 
     <!-- Card 4 -->
-    <div class="flex flex-col p-6 bg-[#0A1316] bg-opacity-40 rounded-lg shadow-md space-y-4">
+    <div class="flex flex-col space-y-4">
       <div class="flex items-center justify-center">
         <img src="undraw_version-control_eiam.svg" alt="Version control icon" class="w-1/2 h-[200px]">
       </div>
-      <h2 class="text-xl font-semibold text-[#B5FBFF]">Track Changes and Roll Back</h2>
-      <p class="text-sm">
-        Maintain a complete history of your asset modifications with MANTA Lab. 
-        Easily review past versions and comments to understand the evolution of your work. 
-        If needed, roll back to a previous version with a single click, giving you the flexibility and confidence to experiment while preserving your creative integrity.
-      </p>
+      <div class="p-6 bg-[#0A1316] bg-opacity-40 rounded-lg shadow-md">
+        <h2 class="text-xl font-semibold text-[#B5FBFF]">Track Changes and Roll Back</h2>
+        <p class="text-sm">
+          Maintain a complete history of your asset modifications with MANTA Lab.
+          Easily review past versions and comments to understand the evolution of your work.
+          If needed, roll back to a previous version with a single click, giving you the flexibility and confidence to experiment while preserving your creative integrity.
+        </p>
+      </div>
     </div>
   </div>
 </div>
@@ -224,7 +232,7 @@
 </div>
 
 <!-- Unified view -->
-<div class="flex flex-col lg:flex-row items-center justify-center space-y-2 lg:space-y-0 lg:space-x-8 max-w-7xl mx-auto p-4">
+<div class="flex flex-col lg:flex-row items-center justify-center space-y-2 lg:space-y-0 max-w-7xl mx-auto p-4">
   <!-- Text Column -->
   <div class="flex-1 space-y-2">
     <h2 class="text-2xl font-semibold">Unified View, Compare, and Review</h2>
@@ -251,6 +259,9 @@
     </div>
   </div>
 
+  <!-- Spacer -->
+  <div class="lg:w-8"></div>
+
   <!-- Image Content -->
   <div class="flex-1 flex items-center justify-center">
     <div class="w-full h-full rounded-lg shadow-md">
@@ -260,14 +271,7 @@
 </div>
 
 <!-- Effortlessly visualize changes -->
-<div class="flex flex-col-reverse lg:flex-row items-center justify-center space-y-2 lg:space-y-0 lg:space-x-8 max-w-7xl mx-auto p-4">
-  <!-- Image Content -->
-  <div class="flex-1">
-    <div class="w-full h-full rounded-lg shadow-md">
-      <img src="screenshot-1.png" alt="Placeholder for Asset Viewer" class="w-full h-full object-cover">
-    </div>
-  </div>
-
+<div class="flex flex-col lg:flex-row-reverse items-center justify-center space-y-2 lg:space-y-0 max-w-7xl mx-auto p-4">
   <!-- Text Column -->
   <div class="flex-1 space-y-2">
     <h2 class="text-2xl font-semibold">Effortlessly Visualize Changes</h2>
@@ -276,7 +280,7 @@
       <h3 class="text-lg font-semibold text-[#B5FBFF]">3D Comparison Tools</h3>
       <p class="mt-2 text-sm text-gray-300">
         Easily compare versions of your 3D assets with our intuitive side-by-side viewer.
-        Focus on specific annotated areas to highlight changes and improvements. 
+        Focus on specific annotated areas to highlight changes and improvements.
         Utilize animation playback features to slow down and loop sections, making it simple to spot differences and refine your designs effectively.
       </p>
     </div>
@@ -293,51 +297,63 @@
     <div class="p-6 bg-[#0A1316] bg-opacity-40 rounded-lg shadow-md">
       <h3 class="text-lg font-semibold text-[#B5FBFF]">Audio Comparison Tools</h3>
       <p class="mt-2 text-sm text-gray-300">
-        Quickly evaluate your audio assets with our streamlined comparison tool. 
+        Quickly evaluate your audio assets with our streamlined comparison tool.
         Easily compare versions to assess changes in loudness, dynamic range, and peak levels.
         Select from various visualizers and loop small sections to pinpoint differences, ensuring your audio design meets the project’s quality standards.
       </p>
     </div>
   </div>
+
+  <!-- Spacer -->
+  <div class="lg:w-8"></div>
+
+  <!-- Image Content -->
+  <div class="flex-1">
+    <div class="w-full h-full rounded-lg shadow-md">
+      <img src="screenshot-1.png" alt="Placeholder for Asset Viewer" class="w-full h-full object-cover">
+    </div>
+  </div>
 </div>
 
 <!-- Contact us -->
-<div class="sm:w-full lg:w-1/2 mx-auto p-4 text-white text-xl bg-[#0A1316] bg-opacity-40 space-y-2 pb-4 my-8 rounded">
-  <p class="text-center font-semibold pb-2">Ready to elevate your creative process?</p>
-  <p class="mt-2 text-center text-sm text-gray-300">Start using MANTA Lab today and benefit from streamlined asset management, intuitive visual feedback, and enhanced collaboration to inspire your creative vision.</p>
-  <div class="flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0 items-center justify-center ">
-    <form
-        action="https://cymatic.us9.list-manage.com/subscribe/post?u=ef9a12026e8ec92e8bd14600e&amp;id=e4225e3077&amp;f_id=004e50e1f0"
-        method="post"
-        target="_self"
-        class="flex w-full md:w-96"
-      >
-        <input
-          class="h-11 w-3/5 p-2 rounded-l-md bg-[#0F1C2E] border-[#364050] border p-1 focus:border-[#5acdd3] outline-none"
-          type="email"
-          name="EMAIL"
-          placeholder="Email Address"
-          value=""
-          required
-        />
-        <div
-          aria-hidden="true"
-          style="position: absolute; left: -50000px;"
+<div class="p-4 my-8">
+  <div class="w-full max-w-2xl mx-auto p-2 sm:p-6 space-y-4 rounded-lg bg-[#0A1316] bg-opacity-40 text-white text-xl">
+    <p class="text-center font-semibold pb-2">Ready to elevate your creative process?</p>
+    <p class="mt-2 text-center text-sm text-gray-300">Start using MANTA Lab today and benefit from streamlined asset management, intuitive visual feedback, and enhanced collaboration to inspire your creative vision.</p>
+    <div class="flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0 items-center justify-center ">
+      <form
+          action="https://cymatic.us9.list-manage.com/subscribe/post?u=ef9a12026e8ec92e8bd14600e&amp;id=e4225e3077&amp;f_id=004e50e1f0"
+          method="post"
+          target="_self"
+          class="flex w-full md:w-96"
         >
           <input
-            type="text"
-            name="b_ef9a12026e8ec92e8bd14600e_e4225e3077"
-            tabindex="-1"
+            class="h-11 w-3/5 p-2 rounded-l-md bg-[#0F1C2E] border-[#364050] border p-1 focus:border-[#5acdd3] outline-none"
+            type="email"
+            name="EMAIL"
+            placeholder="Email Address"
             value=""
+            required
           />
+          <div
+            aria-hidden="true"
+            style="position: absolute; left: -50000px;"
+          >
+            <input
+              type="text"
+              name="b_ef9a12026e8ec92e8bd14600e_e4225e3077"
+              tabindex="-1"
+              value=""
+            />
+          </div>
+          <button type="submit" name="subscribe" class="h-11 w-2/5 p-2 bg-[#5acdd3] rounded-r-md text-[#181b39] justify-center items-center inline-flex">
+            <div class="text-[#181b39] text-xl font-semibold">Join Waitlist</div>
+          </button>
+        </form>
+        <div class="w-full md:w-56 h-11 p-2 bg-[#4caeff] rounded-md justify-center items-center inline-flex">
+          <a href="https://calendly.com/manta-demo/30min" class="text-[#181b39] text-xl font-semibold leading-7">Schedule a demo</a>
         </div>
-        <button type="submit" name="subscribe" class="h-11 w-2/5 p-2 bg-[#5acdd3] rounded-r-md text-[#181b39] justify-center items-center inline-flex">
-          <div class="text-[#181b39] text-xl font-semibold">Join Waitlist</div>
-        </button>
-      </form>
-      <div class="w-full md:w-56 h-11 p-2 bg-[#4caeff] rounded-md justify-center items-center inline-flex">
-        <a href="https://calendly.com/manta-demo/30min" class="text-[#181b39] text-xl font-semibold leading-7">Schedule a demo</a>
-      </div>
+  </div>
 </div>
 
 
