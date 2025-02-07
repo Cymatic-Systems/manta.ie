@@ -3,6 +3,11 @@
 
 {% block padding %}{% endblock padding %}
 {% block content %}
+<style>
+  .light_shadow {
+    box-shadow: 0 0 120px 40px #ffffff10
+  }
+</style>
 <div id="backdrop" class="h-[100vh] min-h-[30rem] max-h-[1440px]">
   <canvas class="w-full h-full">
   </canvas>
@@ -61,7 +66,7 @@
 
  <!-- Image-->
 <div class="flex items-center justify-center max-w-screen-xl w-full mx-auto mt-[-20vh] sm:mt-[-40vh] p-4 text-white text-xl space-y-2">
-  <img src="files_screenshot.jpg" alt="Demo screen shot of site" class="w-5/6 h-full object-cover drop-shadow-2xl ">
+  <img src="files_screenshot.jpg" alt="Demo screen shot of site" class="w-5/6 h-full object-cover light_shadow">
 </div>
 
 <!-- Spacer -->
@@ -268,7 +273,7 @@
   <!-- Image Content -->
   <div class="flex-1 flex items-center justify-center">
     <div class="w-full h-full rounded-lg shadow-md">
-      <img src="2d_viewer.jpg" alt="Demo screen shot of site" class="w-full h-full drop-shadow-xl object-cover">
+      <img src="2d_viewer.jpg" alt="Demo screen shot of site" class="w-full h-full object-cover light_shadow">
     </div>
   </div>
 </div>
@@ -313,7 +318,7 @@
   <!-- Image Content -->
   <div class="flex-1">
     <div class="w-full h-full rounded-lg shadow-md">
-      <img src="3d_viewer.jpg" alt="Placeholder for Asset Viewer" class="w-full h-full object-cover drop-shadow-xl">
+      <img src="3d_viewer.jpg" alt="Placeholder for Asset Viewer" class="w-full h-full object-cover light_shadow">
     </div>
   </div>
 </div>
